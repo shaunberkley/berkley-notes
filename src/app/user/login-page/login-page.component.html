@@ -1,0 +1,28 @@
+<div class="login" *ngIf="!(afAuth.authState | async); else alreadyLoggedIn">
+    <div class="login__container">
+        <div class="login__column login__form">
+            <div class="login__form-container">
+                <div class="login__logo">
+                    <img src="../../../../assets/logo.svg" alt="">
+                </div>
+                <app-email-login></app-email-login>
+            </div>
+            <!-- <div class="signing-in" *ngIf="signingIn">
+                <h2>Signing you in</h2>
+                <img src="/assets/loading-icon.svg">
+            </div> -->
+        </div>
+        <div class="login__column login__image">
+            <!-- <div class="login__logo">
+            <img src="../../../../assets/logo.svg" alt="">
+        </div> -->
+        </div>
+    </div>
+</div>
+
+<ng-template #alreadyLoggedIn>
+    <p class="text-success">
+        Already logged in!
+    </p>
+    <button mat-stroked-button (click)="afAuth.auth.signOut()">Logout</button>
+</ng-template>

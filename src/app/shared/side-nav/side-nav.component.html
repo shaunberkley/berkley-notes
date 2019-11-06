@@ -1,0 +1,32 @@
+<div class="side-nav" *ngIf="afAuth.authState | async as user" [ngClass]="hs.show ? 'show' : ''">
+    <button class="nav-close" (click)="hs.toggleMenu()"><i class="material-icons">close</i></button>
+
+    <div class="nav-top">
+        <div class="logo" routerLink="/">
+            <img src="../../../assets/logo.svg">
+            Quantum Note
+        </div>
+    </div>
+    <div class="nav-container">
+        <app-user-menu></app-user-menu>
+        <div class="menu-group">
+            <div class="menu-item" routerLink="/" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active">
+                Dashboard
+            </div>
+        </div>
+
+        <div class="menu-group">
+            <div class="menu-heading">Notes</div>
+            <div class="menu-item" *ngFor="let note of notes" [routerLink]="'/note/' + note.id" routerLinkActive="active">{{ note.title }}</div>
+        </div>
+
+        <div class="admin-menu menu-group" *ngIf="user.role === 'admin' || user.role === 'super admin'">
+            <div class="menu-heading">Admin Tools</div>
+            <div class="menu-item" routerLink="/users" routerLinkActive="active">Users</div>
+            <div class="menu-item" routerLink="/spaces" *ngIf="user.role === 'super admin'">Spaces</div>
+            <div class="menu-item" routerLink="/logs" *ngIf="user.role === 'super admin'">Logs</div>
+            <div class="menu-item" routerLink="/settings">Settings</div>
+        </div>
+
+    </div>
+</div>

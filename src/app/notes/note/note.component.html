@@ -1,0 +1,22 @@
+<div class="note">
+    <div class="note-container">    
+        <div class="note-header">
+            <mat-slide-toggle
+                class="example-margin"
+                [(ngModel)]="liveMode">
+                Live Mode
+            </mat-slide-toggle>
+            <button mat-flat-button color="primary" *ngIf="!liveMode" (click)="saveContent()" [disabled]="!contentChanged">Save</button>
+        </div>
+        
+        <!-- <div *ngIf="note">{{ note.title }}</div> -->
+        <!-- <div [innerHTML]="note.content" *ngIf="note"></div> -->
+        <!-- <textarea [froalaEditor]='options' [(froalaModel)]="froalaContent"></textarea> -->
+        <div class="note-body">
+            <quill-editor
+            [(ngModel)]="editorContent"
+            [modules]="quillConfig"
+            (onContentChanged)="onContentChanged()"></quill-editor>
+        </div>
+    </div>
+</div>

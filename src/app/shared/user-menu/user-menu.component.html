@@ -1,0 +1,16 @@
+<div class="user-menu" *ngIf="afAuth.authState | async as user" [matMenuTriggerFor]="userMenu">
+    <!-- <div class="user-avatar" [ngStyle]="{ 'background-image': 'url(' + user.avatar + ')' }">
+        <div class="initials" *ngIf="!user.avatar">{{ auth.initials }}</div>
+    </div> -->
+    <!-- {{ user.name.first }} {{ user.name.last }} -->
+    My Account
+    <i style="font-size: 16px; margin-left: 2px;" class="material-icons">arrow_drop_down</i>
+    <mat-menu #userMenu="matMenu" [overlapTrigger]="false">
+        <div class="menu-item" routerLink="/profile">Profile</div>
+        <div class="menu-item" routerLink="/subscription">Manage subscription</div>
+        <div class="menu-item" (click)="afAuth.auth.signOut()">
+            <span>Sign Out</span>
+            <i style="font-size: 18px; margin-left: 5px;" class="material-icons">power_settings_new</i>
+        </div>
+    </mat-menu>
+</div>

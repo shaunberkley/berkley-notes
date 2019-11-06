@@ -1,0 +1,22 @@
+<div class="header" *ngIf="afAuth.authState | async as user">
+    <div class="page-title">
+        <div class="logo">
+            <a routerLink="/">
+                <img src="../../../../assets/logo.svg">
+            </a>
+        </div>
+        <h1>{{ pageTitle }}</h1>
+    </div>
+    <div *ngIf="afAuth.authState | async; then authenticated else guest"></div>
+
+    <ng-template #guest>
+        <div class="login" routerLink="/login">Sign In</div>
+    </ng-template>
+
+    <ng-template #authenticated>
+        <app-user-menu></app-user-menu>
+    </ng-template>
+
+    <button (click)="hs.toggleMenu()"><i class="material-icons menu-icon">menu</i></button>
+
+</div>

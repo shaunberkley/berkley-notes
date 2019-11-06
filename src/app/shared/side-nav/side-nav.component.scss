@@ -1,0 +1,193 @@
+.side-nav {
+    width: 300px;
+    height: 100vh;
+    background-color: #3a3f45;
+    color: #ffffff;
+    // border-right: 1px solid #e8e9ed;
+    z-index: 1;
+
+    @media (max-width: 1024px) {
+        display: none;
+        position: absolute;
+        width: 100%;
+        overflow: auto;
+        z-index: 999;
+    }
+
+    &.show {
+        display: block !important;
+    }
+
+    .nav-close {
+        position: absolute;
+        right: 20px;
+        top: 0;
+        height: 80px;
+
+        @media (min-width: 1025px) {
+            display: none;
+        }
+
+        &:hover {
+            i {
+                color: #000000;
+            }
+        }
+    }
+
+    .nav-top {
+        height: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px;
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            font-size: 8px;
+            text-transform: uppercase;
+
+            img {
+                height: 45px;
+                margin-bottom: 5px;
+                margin-left: -25px;
+
+                // @media (max-width: 1024px) {
+                //     width: 40px
+                // }
+            }
+            span {
+                font-weight: 800;
+                font-size: 11px;
+            }
+        }
+    }
+
+    .nav-container {
+        max-width: 400px;
+        position: relative;
+        margin: auto;
+    }
+
+    .select-container {
+        margin-bottom: 10px;
+
+        select {
+            border-color: #ffffff;
+            color: #ffffff;
+
+            option {
+                color: #000000;
+            }
+        } 
+
+        &:after {
+            border-color: #ffffff;
+        }
+    }
+}
+
+app-user-menu {
+    @media only screen and (min-width: 1025px) {
+        display: none;
+    }
+}
+
+.side-nav-header {
+    height: 8rem;
+    padding: 0 2rem;
+}
+
+.user-menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 40px;
+    padding: 0 40px;
+}
+
+.menu-caret {
+    position: relative;
+}
+
+.user-avatar {
+    width: 35px;
+    height: 35px;
+    background-color: #9758bd;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.user-name { 
+    margin-right: 2px;
+}
+
+.user-dropdown {
+    display: none;
+    position: absolute;
+    top: 120%;
+    right: 0;
+    background-color: #f7f7f7;
+    color: #363F49;
+    padding: 15px;
+    z-index: 1;
+}
+
+.menu-open {
+    display: block;
+}
+
+.dropdown-item:not(:last-of-type) {
+    margin-bottom: 10px;
+}
+
+.room-name {
+    font-size: 18px;
+    padding: 0 40px;
+}
+
+.menu-group {
+    margin-bottom: 40px;
+}
+
+.menu-heading {
+    padding: 0 40px;
+    color: #00cff0;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.menu-item {
+    outline: none;
+    padding: 5px 40px;
+    cursor: pointer;
+    position: relative;
+    
+    &:hover {
+        background-color: rgba(255,255,255,.1);
+        color: #000000;
+    }
+
+    &.active {
+        &:after {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background-color: #00cff0;
+            border-radius: 50%;
+            position: absolute;
+            right: 20px;
+            top: 12px;
+        }
+    }
+
+}

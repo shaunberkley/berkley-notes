@@ -1,0 +1,46 @@
+.header {
+    z-index: 10;
+    height: 8rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #333333;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e8e9ed;
+    font-size: 14px;
+    padding: 0 2rem;
+
+  .logo {
+    margin-right: 2rem;
+
+    img {
+      height: 40px;
+    }
+
+    @media only screen and (min-width: 1025px) {
+      display: none;
+    }
+  }
+
+  button {
+    @media only screen and (min-width: 1025px) {
+      display: none;
+    }
+  }
+  .page-title {
+    display: flex;
+    align-items: center;
+
+    h1 {
+      margin: 0;
+    }
+  }
+  
+  @media only screen and (max-width: 1024px) {
+    app-user-menu {
+      display: none;
+    }
+  }
+
+}

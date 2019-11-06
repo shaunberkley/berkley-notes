@@ -1,0 +1,5 @@
+<a mat-button routerLink="/login" *ngIf="!(afAuth.authState | async)">🔑 Login</a>
+<a mat-button routerLink="/login" *ngIf="afAuth.authState | async as user">
+    <img class="avatar" [src]="user.photoURL || 'assets/default-user.svg'">
+    Profile
+</a>

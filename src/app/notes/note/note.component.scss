@@ -1,0 +1,30 @@
+.note {
+    height: 100%;
+
+    .note-container {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+
+        .note-header {
+            height: 80px;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .note-body {
+            flex: 1;
+
+            .ql-toolbar.ql-snow, .ql-container.ql-snow {
+                border: none;
+            }
+
+            .ql-container {
+                font-size: 16px;
+            }
+
+        }
+    }
+}
