@@ -11,12 +11,22 @@ export class SnackService {
 
   authError() {
     this.snackBar.open('You must be logged in!', 'OK', {
-      duration: 5000
+      duration: 5000      
     });
 
     return this.snackBar._openedSnackBarRef
       .onAction()
       .pipe(tap(_ => this.router.navigate(['/login'])))
       .subscribe();
+  }
+
+  savedNote() {
+    this.snackBar.open('Note saved', 'DISMISS', {
+      duration: 3000,
+      verticalPosition: 'bottom',
+      horizontalPosition: 'right'
+    });
+
+    return this.snackBar._openedSnackBarRef.onAction().subscribe();
   }
 }

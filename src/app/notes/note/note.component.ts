@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Note } from '../note.model';
 import { NotesService } from '../../notes/notes.service';
+import { SnackService } from '../../services/snack.service';
 
 @Component({
   selector: 'app-note',
@@ -21,16 +22,17 @@ export class NoteComponent implements OnInit {
 
   quillConfig = {};
 
-  constructor(private route: ActivatedRoute, public notesService: NotesService) { 
-    this.route.params.subscribe(params => {
-      this.id = params['id'];
-    }); 
+  constructor(private router: Router, private route: ActivatedRoute, public notesService: NotesService, public snackService: SnackService) { 
+    
   }  
 
   ngOnInit() {
-    this.notesService
+    this.route.params.subscribe(params => {
+      this.id = params['id'];
+      this.notesService
       .getUserNote(this.id)
       .subscribe(note => (this.editorContent = note.content, this.note = note));
+    });     
   }
 
   debounce(func, wait, immediate) {
@@ -69,13 +71,29 @@ export class NoteComponent implements OnInit {
   }
 
   saveContent() {
+    console.log(this.editorContent);
     this.froalaUpdate(this.editorContent);
     this.contentChanged = false;
+    this.snackService.savedNote();
   }
 
   froalaUpdate(html: any) {
+    console.log(this.id);
     this.notesService.updateContent(this.id, html);
     this.checkSave();
+  }
+
+  deleteNote() {
+    const answer = window.confirm("Delete note?")
+    if (answer) {
+        //some code
+        console.log(this.id);
+        this.notesService.deleteNote(this.id)
+        this.router.navigateByUrl('/');
+    }
+    else {
+        //some code
+    }
   }
 
 }

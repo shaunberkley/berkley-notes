@@ -12,6 +12,11 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+
+            .note-updated {
+                font-size: 12px;
+                margin-right: 10px;
+            }
         }
 
         .note-body {
@@ -22,7 +27,15 @@
             }
 
             .ql-container {
-                font-size: 16px;
+                font-size: 14px;
+
+                @media (max-width: 1024px) {
+                    font-size: 16px;
+                }
+            }
+
+            .ql-editor ol, .ql-editor ul {
+                padding-left: 0;
             }
 
         }

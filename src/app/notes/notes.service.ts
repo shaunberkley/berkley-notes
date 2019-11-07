@@ -12,13 +12,15 @@ export class NotesService {
   constructor(private afAuth: AngularFireAuth, private db: AngularFirestore) {}
 
   /**
-   * Creates a new Note for the current user
+   * Creates a new note
    */
   async createNote(data: Note) {
     const user = await this.afAuth.auth.currentUser;
     return this.db.collection('notes').add({
       ...data,
-      uid: user.uid
+      uid: user.uid,
+      createdDate: new Date(),
+      updatedDate: new Date(),
     });
   }
 
@@ -31,7 +33,8 @@ export class NotesService {
     return this.db.collection('notes')
     .doc<Note>(id).update({
       content: content,
-      lastUpdatedUser: user.uid
+      lastUpdatedUser: user.uid,
+      updatedDate: new Date()
     });
   }
 
@@ -44,7 +47,7 @@ export class NotesService {
         if (user) {
           return this.db
             .collection<Note>('notes', ref =>
-              ref.where('uid', '==', user.uid).orderBy('order')
+              ref.where('uid', '==', user.uid).orderBy('updatedDate', 'desc')
             )
             .valueChanges({ idField: 'id' });
         } else {
@@ -87,7 +90,7 @@ export class NotesService {
   /**
    * Delete Note
    */
-  deleteNotes(noteId: string) {
+  deleteNote(noteId: string) {
     return this.db
       .collection('notes')
       .doc(noteId)

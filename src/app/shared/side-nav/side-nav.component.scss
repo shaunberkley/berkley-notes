@@ -164,6 +164,17 @@ app-user-menu {
     color: #00cff0;
     margin-bottom: 5px;
     text-transform: uppercase;
+
+    &.note-heading {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-right: 12px;
+
+        i {
+            cursor: pointer;
+        }
+    }
 }
 
 .menu-item {

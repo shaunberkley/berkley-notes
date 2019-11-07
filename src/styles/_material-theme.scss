@@ -1,0 +1,80 @@
+// primary blue
+$md-blue: (
+    50 : #e0f9fd,
+    100 : #b3f1fb,
+    200 : #80e7f8,
+    300 : #4dddf5,
+    400 : #26d6f2,
+    500 : #00cff0,
+    600 : #00caee,
+    700 : #00c3ec,
+    800 : #00bde9,
+    900 : #00b2e5,
+    A100 : #ffffff,
+    A200 : #d9f5ff,
+    A400 : #a6e8ff,
+    A700 : #8ce2ff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+// accent green
+$md-green: (
+    50 : #e5fbf1,
+    100 : #bff5dd,
+    200 : #94efc6,
+    300 : #69e8af,
+    400 : #48e39e,
+    500 : #28de8d,
+    600 : #24da85,
+    700 : #1ed57a,
+    800 : #18d170,
+    900 : #0fc85d,
+    A100 : #f6fff9,
+    A200 : #c3ffda,
+    A400 : #90ffba,
+    A700 : #76ffaa,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #000000,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+// Custom Theming for Angular Material
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+$berkley-notes-primary: mat-palette($md-blue);
+$berkley-notes-accent: mat-palette($md-green);
+$berkley-notes-warn: mat-palette($mat-red);
+
+$berkley-notes-theme: mat-light-theme($berkley-notes-primary, $berkley-notes-accent, $berkley-notes-warn);
+
+@include angular-material-theme($berkley-notes-theme);
