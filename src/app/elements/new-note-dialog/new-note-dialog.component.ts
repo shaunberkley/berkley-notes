@@ -10,6 +10,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class NewNoteDialogComponent implements OnInit {
 
+  noteTitle;
+
   constructor(public notesService: NotesService, public dialogRef: MatDialogRef<NewNoteDialogComponent>, public router: Router) { }
 
   ngOnInit() {
