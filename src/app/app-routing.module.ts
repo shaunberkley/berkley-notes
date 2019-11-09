@@ -14,7 +14,7 @@ const routes: Routes = [
     path: 'note/:id',
     component: NoteComponent,
     data: { title: 'Note' },
-    // canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   // {
   //   path: 'customers',

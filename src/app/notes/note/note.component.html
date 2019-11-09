@@ -12,10 +12,6 @@
                 <button mat-flat-button color="primary" *ngIf="!liveMode" (click)="saveContent()" [disabled]="!contentChanged">Save</button>
             </div>
         </div>
-        
-        <!-- <div *ngIf="note">{{ note.title }}</div> -->
-        <!-- <div [innerHTML]="note.content" *ngIf="note"></div> -->
-        <!-- <textarea [froalaEditor]='options' [(froalaModel)]="froalaContent"></textarea> -->
         <div class="note-body">
             <quill-editor
             [(ngModel)]="editorContent"

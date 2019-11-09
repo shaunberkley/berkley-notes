@@ -20,13 +20,15 @@ import { NoteComponent } from './notes/note/note.component';
 
 // Other imports
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
-import { QuillModule } from 'ngx-quill'
+import { QuillModule } from 'ngx-quill';
+import { NewNoteDialogComponent } from './elements/new-note-dialog/new-note-dialog.component'
 
 
 @NgModule({
   declarations: [
     AppComponent,
     NoteComponent,
+    NewNoteDialogComponent,
     //HomePageComponent,
   ],
   imports: [
@@ -44,6 +46,7 @@ import { QuillModule } from 'ngx-quill'
     QuillModule.forRoot()
   ],
   providers: [],
+  entryComponents: [NewNoteDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

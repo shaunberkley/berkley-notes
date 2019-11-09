@@ -5,6 +5,9 @@ import { AngularFireAuth } from '@angular/fire/auth';
 
 import { Note } from '../../notes/note.model';
 import { NotesService } from '../../notes/notes.service';
+import { NewNoteDialogComponent } from '../../elements/new-note-dialog/new-note-dialog.component';
+
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-side-nav',
@@ -15,7 +18,7 @@ export class SideNavComponent implements OnInit {
 
   notes: Note[];
 
-  constructor(public hs: HeaderService, public notesService: NotesService, public router: Router, public afAuth: AngularFireAuth) {
+  constructor(public hs: HeaderService, public notesService: NotesService, public router: Router, public afAuth: AngularFireAuth, public dialog: MatDialog) {
     const _this = this;
 
     router.events.subscribe((val) => {
@@ -27,6 +30,12 @@ export class SideNavComponent implements OnInit {
     this.notesService
       .getUserNotes()
       .subscribe(notes => (this.notes = notes));
+  }
+
+  newNote(): void {
+    this.dialog.open(NewNoteDialogComponent, {
+      width: '250px'
+    });
   }
 
 }

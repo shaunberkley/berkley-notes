@@ -18,7 +18,7 @@
         <div class="menu-group">
             <div class="menu-heading note-heading">
                 <span>Notes</span>
-                <span><i class="material-icons" (click)="notesService.createNote({title: 'New Note'})">add</i></span>
+                <span><i class="material-icons" (click)="newNote()">add</i></span>
 
             </div>
             <div class="menu-item" *ngFor="let note of notes" [routerLink]="'/note/' + note.id" routerLinkActive="active">{{ note.title }}</div>
