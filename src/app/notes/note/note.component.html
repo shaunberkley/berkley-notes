@@ -8,7 +8,7 @@
             </mat-slide-toggle>
             <i class="material-icons" (click)="deleteNote()">delete_outline</i>
             <div class="note-save-container" *ngIf="note">
-                <span class="note-updated">Last Updated: {{ note.updatedDate.seconds * 1000 | date:'medium' }}</span>
+                <span class="note-updated">Last Updated: {{ updatedDate | date:'medium' }}</span>
                 <button mat-flat-button color="primary" *ngIf="!liveMode" (click)="saveContent()" [disabled]="!contentChanged">Save</button>
             </div>
         </div>

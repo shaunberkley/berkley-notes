@@ -19,7 +19,7 @@ export class NoteComponent implements OnInit {
   editorContent: string;
   liveMode: boolean = false;
   contentChanged: boolean = false;
-
+  updatedDate: any;
   quillConfig = {};
 
   constructor(private router: Router, private route: ActivatedRoute, public notesService: NotesService, public snackService: SnackService) { 
@@ -31,7 +31,7 @@ export class NoteComponent implements OnInit {
       this.id = params['id'];
       this.notesService
       .getUserNote(this.id)
-      .subscribe(note => (this.editorContent = note.content, this.note = note));
+      .subscribe(note => (this.editorContent = note.content, this.note = note, console.log(note), this.updatedDate = note.updatedDate.seconds * 1000));
     });     
   }
 
