@@ -6,4 +6,5 @@ export interface Note {
     createdDate?: Date;  
     updatedDate?: Date;
     lastUpdatedUser?: string;
+    public?: boolean;
 }

@@ -21,13 +21,48 @@
 
         .note-body {
             flex: 1;
+            height: 100%;
+
+            quill-editor {
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+            }
 
             .ql-toolbar.ql-snow, .ql-container.ql-snow {
                 border: none;
             }
 
+            .ql-toolbar.ql-snow {
+                box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.05);
+            }
+
             .ql-container {
                 font-size: 14px;
+                height: 100%;
+                overflow: auto;
+                flex: 1;
+                -webkit-overflow-scrolling: touch;
+
+                /* Let's get this party started */
+                ::-webkit-scrollbar {
+                    width: 8px;
+                    cursor: pointer;
+                }
+                
+                /* Track */
+                ::-webkit-scrollbar-track {
+                    cursor: pointer;
+                }
+                
+                /* Handle */
+                ::-webkit-scrollbar-thumb {
+                    background: #28de8d; 
+                    cursor: pointer;
+                }
+                ::-webkit-scrollbar-thumb:window-inactive {
+                    background: #dddddd; 
+                }
 
                 @media (max-width: 1024px) {
                     font-size: 16px;

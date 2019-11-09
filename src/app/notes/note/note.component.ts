@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Note } from '../note.model';
 import { NotesService } from '../../notes/notes.service';
 import { SnackService } from '../../services/snack.service';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-note',
@@ -21,8 +22,9 @@ export class NoteComponent implements OnInit {
   contentChanged: boolean = false;
   updatedDate: any;
   quillConfig = {};
+  public: boolean;
 
-  constructor(private router: Router, private route: ActivatedRoute, public notesService: NotesService, public snackService: SnackService) { 
+  constructor(private router: Router, private route: ActivatedRoute, public notesService: NotesService, public snackService: SnackService, public afAuth: AngularFireAuth) { 
     
   }  
 
@@ -31,7 +33,13 @@ export class NoteComponent implements OnInit {
       this.id = params['id'];
       this.notesService
       .getUserNote(this.id)
-      .subscribe(note => (this.editorContent = note.content, this.note = note, console.log(note), this.updatedDate = note.updatedDate.seconds * 1000));
+      .subscribe(note => (
+        this.editorContent = note.content, 
+        this.note = note, 
+        console.log(note), 
+        this.updatedDate = note.updatedDate.seconds * 1000, 
+        this.public = note.public)
+        );
     });     
   }
 
@@ -94,6 +102,10 @@ export class NoteComponent implements OnInit {
     else {
         //some code
     }
+  }
+
+  togglePrivacy(publicValue) {
+    this.notesService.updateNote(this.id, {public: !publicValue});
   }
 
 }

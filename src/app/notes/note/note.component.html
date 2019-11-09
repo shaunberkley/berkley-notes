@@ -1,4 +1,4 @@
-<div class="note">
+<div class="note" *ngIf="public || (afAuth.authState | async); else noPermission">
     <div class="note-container">    
         <div class="note-header">
             <mat-slide-toggle
@@ -7,6 +7,8 @@
                 Live Mode
             </mat-slide-toggle>
             <i class="material-icons" (click)="deleteNote()">delete_outline</i>
+            <i class="material-icons" (click)="togglePrivacy(note.public)" *ngIf="!public">lock</i>
+            <i class="material-icons" (click)="togglePrivacy(note.public)" *ngIf="public">lock_open</i>
             <div class="note-save-container" *ngIf="note">
                 <span class="note-updated">Last Updated: {{ updatedDate | date:'medium' }}</span>
                 <button mat-flat-button color="primary" *ngIf="!liveMode" (click)="saveContent()" [disabled]="!contentChanged">Save</button>
@@ -20,3 +22,10 @@
         </div>
     </div>
 </div>
+
+<ng-template #noPermission>
+    <p class="text-success">
+        You do not have permission to view this note
+    </p>
+    <button mat-stroked-button routerLink="/login">Sign in</button>
+</ng-template>

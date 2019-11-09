@@ -39,6 +39,20 @@ export class NotesService {
   }
 
   /**
+   * Updates a note
+   */
+  async updateNote(id, data) {
+    console.log(data);
+    const user = await this.afAuth.auth.currentUser;
+    return this.db.collection('notes')
+    .doc<Note>(id).update({
+      ...data,
+      lastUpdatedUser: user.uid,
+      updatedDate: new Date()
+    });
+  }
+
+  /**
    * Get all notes owned by current user
    */
   getUserNotes() {
