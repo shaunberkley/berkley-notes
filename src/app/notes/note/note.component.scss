@@ -10,13 +10,21 @@
             height: 80px;
             padding: 20px;
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-end;
             align-items: center;
 
-            .note-updated {
-                font-size: 12px;
-                margin-right: 10px;
-            }
+            .note-save-container {
+                margin-right: 20px; 
+
+                i {
+                    cursor: pointer; 
+                }
+
+                .note-updated {
+                    font-size: 12px;
+                    margin-right: 10px;
+                }
+            }            
         }
 
         .note-body {
@@ -74,5 +82,16 @@
             }
 
         }
+    }
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 10px 40px;
+
+    &:hover {
+        background-color: #f5f5f5;
     }
 }

@@ -1,18 +1,31 @@
 <div class="note" *ngIf="public || (afAuth.authState | async); else noPermission">
     <div class="note-container">    
-        <div class="note-header">
-            <mat-slide-toggle
-                class="example-margin"
-                [(ngModel)]="liveMode">
-                Live Mode
-            </mat-slide-toggle>
-            <i class="material-icons" (click)="deleteNote()">delete_outline</i>
-            <i class="material-icons" (click)="togglePrivacy(note.public)" *ngIf="!public">lock</i>
-            <i class="material-icons" (click)="togglePrivacy(note.public)" *ngIf="public">lock_open</i>
+        <div class="note-header">            
             <div class="note-save-container" *ngIf="note">
                 <span class="note-updated">Last Updated: {{ updatedDate | date:'medium' }}</span>
                 <button mat-flat-button color="primary" *ngIf="!liveMode" (click)="saveContent()" [disabled]="!contentChanged">Save</button>
             </div>
+            <i class="material-icons" [matMenuTriggerFor]="noteSettings">more_vert</i>
+            <mat-menu #noteSettings="matMenu" [overlapTrigger]="false">                
+                <div class="menu-item" (click) = "$event.stopPropagation()">
+                    <span (click)="togglePrivacy(note.public)" *ngIf="!public">
+                        <i class="material-icons">lock</i>
+                        Make public
+                    </span>
+                    <span (click)="togglePrivacy(note.public)" *ngIf="public">
+                        <i class="material-icons">lock_open</i>
+                        Make private
+                    </span>                                       
+                </div>
+                <div class="menu-item" (click) = "$event.stopPropagation()">
+                    <mat-slide-toggle
+                        class="example-margin"
+                        [(ngModel)]="liveMode">
+                        Live Mode
+                    </mat-slide-toggle>                    
+                </div>
+                <div class="menu-item" (click)="deleteNote(); $event.stopPropagation()"><i class="material-icons">delete_outline</i> Delete Note</div>
+            </mat-menu>
         </div>
         <div class="note-body">
             <quill-editor
